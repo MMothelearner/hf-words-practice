@@ -855,7 +855,7 @@ let currentAudio = null;
 
 function getAudioCandidates(word) {
   const embeddedAudioMap = window.EMBEDDED_AUDIO_MAP || null;
-  const embeddedAudio = embeddedAudioMap?.[getAudioBaseName(word)];
+  const embeddedAudio = embeddedAudioMap && embeddedAudioMap[getAudioBaseName(word)];
   if (embeddedAudio) {
     return [embeddedAudio];
   }
@@ -877,7 +877,13 @@ function getAudioCandidates(word) {
         `../音频/`
       ];
 
-  return prefixes.flatMap(prefix => fileNames.map(fileName => `${prefix}${fileName}`));
+  const candidates = [];
+  prefixes.forEach(prefix => {
+    fileNames.forEach(fileName => {
+      candidates.push(`${prefix}${fileName}`);
+    });
+  });
+  return candidates;
 }
 
 const audioCache = new Map();
@@ -1098,7 +1104,8 @@ function learnNav(dir) {
 }
 
 function speakWord() {
-  const sourceWords = isTrainingMode() ? getTrainingSourceWords() : (getCurrentSessionGroup()?.words || []);
+  const currentGroup = getCurrentSessionGroup();
+  const sourceWords = isTrainingMode() ? getTrainingSourceWords() : ((currentGroup && currentGroup.words) || []);
   if (!sourceWords.length || (!isTrainingMode() && completedLearnGroup)) return;
   const w = sourceWords[learnIdx].word;
   const btn = document.getElementById('speak-btn');
