@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不规则动词过去式练习 ⭐</title>
+<meta name="theme-color" content="#FF6B6B">
+<style>
+  :root {
+    --bg: #FFF8F0;
+    --card: #FFFFFF;
+    --primary: #FF6B6B;
+    --primary-light: #FFE5E5;
+    --secondary: #4ECDC4;
+    --secondary-light: #E0F7F5;
+    --accent: #FFD93D;
+    --accent-dark: #F4C430;
+    --purple: #A78BFA;
+    --purple-light: #EDE9FE;
+    --green: #6BCB77;
+    --green-light: #E8F8EA;
+    --text: #2D3748;
+    --text-soft: #718096;
+    --border: #E8E0F0;
+    --shadow: 0 8px 32px rgba(0,0,0,0.08);
+    --radius: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255,107,107,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(78,205,196,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(167,139,250,0.05) 0%, transparent 70%);
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 28px 20px 0;
+  }
+  header h1 {
+    font-family: "Avenir Next", "Trebuchet MS", "PingFang SC", sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+  }
+  header h1 span { color: var(--secondary); }
+  header p {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 16px 0;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 2.5px solid var(--border);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-soft);
+  }
+  .tab-btn:hover { transform: translateY(-2px); border-color: var(--primary); color: var(--primary); }
+  .tab-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 16px rgba(255,107,107,0.35);
+  }
+  .tab-btn.active.t2 { background: var(--secondary); border-color: var(--secondary); box-shadow: 0 4px 16px rgba(78,205,196,0.35); }
+  .tab-btn.active.t3 { background: var(--purple); border-color: var(--purple); box-shadow: 0 4px 16px rgba(167,139,250,0.35); }
+
+  .training-toolbar {
+    max-width: 600px;
+    margin: 10px auto 0;
+    padding: 0 16px;
+  }
+  .training-toggle {
+    width: 100%;
+    border: 2.5px solid var(--border);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.78);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+  }
+  .training-toggle:hover {
+    transform: translateY(-2px);
+    border-color: var(--secondary);
+  }
+  .training-current {
+    color: var(--secondary);
+    font-weight: 800;
+    text-align: right;
+    font-size: 0.82rem;
+  }
+  .training-panel {
+    display: none;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.92);
+    border: 2.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .training-panel.show { display: block; animation: fadeUp 0.25s ease; }
+  .training-select {
+    width: 100%;
+    border: 2.5px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 10px 12px;
+    outline: none;
+  }
+  .training-select:focus { border-color: var(--secondary); }
+  .training-preview {
+    margin-top: 10px;
+  }
+  .training-preview-label {
+    font-size: 0.76rem;
+    color: var(--text-soft);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .training-word-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .training-word-list::-webkit-scrollbar { display: none; }
+  .training-word-chip {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--secondary-light);
+    color: var(--secondary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1;
+    flex: 0 0 auto;
+  }
+
+  /* MAIN */
+  main { padding: 24px 16px 40px; max-width: 600px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===================== LEARN PANEL ===================== */
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 50px;
+    height: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 50px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .word-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 36px 28px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2.5px solid var(--border);
+  }
+  .word-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+  }
+  .word-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+    animation: bounce 0.5s ease;
+  }
+  .word-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .word-meta-row .word-emoji {
+    margin-bottom: 0;
+    flex: 0 0 auto;
+  }
+  .word-meaning-inline {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  @keyframes bounce {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .word-english {
+    font-family: "Avenir Next", "Trebuchet MS", "PingFang SC", sans-serif;
+    font-size: clamp(2.8rem, 10vw, 4rem);
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .word-type-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .word-chinese {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+    max-width: 260px;
+  }
+  .learn-options {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .learn-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.5;
+  }
+  .learn-feedback.show { display: block; }
+  .speak-btn {
+    margin-top: 18px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: none;
+    background: var(--secondary-light);
+    color: var(--secondary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .speak-btn:hover { background: var(--secondary); color: white; transform: scale(1.05); }
+  .speak-btn.speaking { background: var(--secondary); color: white; animation: pulse 0.6s infinite alternate; }
+  @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 2.5px solid var(--border);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text);
+  }
+  .nav-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+  .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+  .word-counter { font-size: 0.9rem; font-weight: 700; color: var(--text-soft); white-space: nowrap; }
+  .learn-complete-actions {
+    display: none;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .learn-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    font-weight: 700;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* ===================== FLASH PANEL ===================== */
+  .flash-card-wrap { perspective: 1000px; margin-bottom: 20px; }
+  .flash-card {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+  .flash-card.flipped { transform: rotateY(180deg); }
+  .flash-face {
+    position: absolute;
+    width: 100%; height: 100%;
+    min-height: 300px;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    border: 2.5px solid var(--border);
+  }
+  .flash-front { background: var(--card); }
+  .flash-back { background: linear-gradient(135deg, var(--secondary-light), var(--card)); transform: rotateY(180deg); }
+  .flash-hint { font-size: 0.85rem; color: var(--text-soft); margin-top: 12px; }
+
+  .flash-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .flash-action-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-know { background: var(--green-light); color: var(--green); }
+  .btn-know:hover { background: var(--green); color: white; transform: translateY(-2px); }
+  .btn-again { background: var(--primary-light); color: var(--primary); }
+  .btn-again:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+  .flash-status { text-align: center; font-size: 0.85rem; color: var(--text-soft); font-weight: 700; margin-top: 12px; }
+
+  /* ===================== QUIZ PANEL ===================== */
+  .quiz-question {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2.5px solid var(--border);
+  }
+  .quiz-label { font-size: 0.85rem; font-weight: 700; color: var(--text-soft); margin-bottom: 10px; }
+  .quiz-word {
+    font-family: "Avenir Next", "Trebuchet MS", "PingFang SC", sans-serif;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-weight: 800;
+    color: var(--purple);
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .option-btn {
+    padding: 16px 12px;
+    border-radius: 16px;
+    border: 2.5px solid var(--border);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+  .option-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .option-btn.wrong { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+  .option-btn:disabled { cursor: not-allowed; }
+
+  .feedback-box {
+    text-align: center;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .feedback-box.show { display: block; animation: fadeUp 0.3s ease; }
+  .feedback-box.correct-fb { background: var(--green-light); color: var(--green); }
+  .feedback-box.wrong-fb { background: var(--primary-light); color: var(--primary); }
+
+  .next-quiz-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--purple);
+    color: white;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .next-quiz-btn.show { display: block; }
+  .next-quiz-btn:hover { background: #8B5CF6; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167,139,250,0.4); }
+
+  /* RESULT SCREEN */
+  .result-screen {
+    text-align: center;
+    padding: 32px 20px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2.5px solid var(--border);
+    display: none;
+  }
+  .result-screen.show { display: block; animation: fadeUp 0.4s ease; }
+  .result-emoji { font-size: 4rem; }
+  .result-score {
+    font-family: "Avenir Next", "Trebuchet MS", "PingFang SC", sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--purple);
+    margin: 8px 0;
+  }
+  .result-msg { font-size: 1.1rem; color: var(--text-soft); font-weight: 600; }
+  .restart-btn {
+    margin-top: 20px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .restart-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,107,0.4); }
+
+  .quiz-progress { font-size: 0.85rem; color: var(--text-soft); font-weight: 700; text-align: right; margin-bottom: 10px; }
+
+  /* STARS ROW */
+  .stars-row { display: flex; justify-content: center; gap: 6px; margin: 10px 0; font-size: 1.8rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⭐ 不规则动词 <span>过去式练习站</span></h1>
+  <p>每天练一练，过去式记得更牢！</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active t1" onclick="switchTab('learn')">📖 学习</button>
+  <button class="tab-btn t2" onclick="switchTab('flash')">🃏 闪卡</button>
+  <button class="tab-btn t3" onclick="switchTab('quiz')">🎮 小测验</button>
+</div>
+
+<div class="training-toolbar">
+  <button class="training-toggle" id="training-toggle" onclick="toggleTrainingPanel()">
+    <span>🎯 选择训练组别</span>
+    <span class="training-current" id="training-current">自动跟随</span>
+  </button>
+  <div class="training-panel" id="training-panel">
+    <select class="training-select" id="training-select" onchange="applyTrainingCategory(this.value)"></select>
+    <div class="training-preview">
+      <div class="training-preview-label" id="training-preview-label">当前词组：</div>
+      <div class="training-word-list" id="training-word-list"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- LEARN PANEL -->
+  <div class="panel active" id="panel-learn">
+    <div class="progress-label" id="learn-label">本次学习：第 1 组 · 第 1 / 6 个</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="learn-bar" style="width:2.7%"></div></div>
+
+    <div class="word-card">
+      <div class="word-meta-row" id="learn-meta-row">
+        <div class="word-emoji" id="learn-emoji">🌟</div>
+        <div class="word-meaning-inline" id="learn-meaning">是</div>
+      </div>
+      <div class="word-english" id="learn-word">am</div>
+      <div class="word-type-badge" id="learn-type">请选择正确的过去式</div>
+      <div class="word-chinese" id="learn-chinese"></div>
+      <div class="learn-options" id="learn-options"></div>
+      <div class="learn-feedback" id="learn-feedback"></div>
+      <button class="speak-btn" id="speak-btn" onclick="speakWord()" style="display:none">🔊 听发音</button>
+    </div>
+
+    <div class="nav-row" id="learn-nav-row">
+      <button class="nav-btn" onclick="learnNav(-1)" id="btn-prev">← 上一个</button>
+      <span class="word-counter" id="learn-counter">1 / 6</span>
+      <button class="nav-btn" onclick="learnNav(1)" id="btn-next">下一个 →</button>
+    </div>
+    <div class="learn-complete-actions" id="learn-complete-actions">
+      <button class="nav-btn" id="btn-complete-next" onclick="startNextGroup()">📖 开始学习下一组</button>
+      <button class="nav-btn" id="btn-complete-quiz" onclick="startGroupQuiz()">🎯 开始小检测</button>
+      <button class="nav-btn" id="btn-reset-progress" onclick="resetLearnProgress()" style="display:none">🔄 再来一遍</button>
+    </div>
+    <div class="learn-note" id="learn-note"></div>
+  </div>
+
+  <!-- FLASH PANEL -->
+  <div class="panel" id="panel-flash">
+    <div class="flash-status" id="flash-status">点击卡片查看答案 ✨</div>
+    <div class="flash-card-wrap">
+      <div class="flash-card" id="flash-card" onclick="flipCard()">
+        <div class="flash-face flash-front">
+          <div class="word-emoji" id="flash-emoji">🌟</div>
+          <div class="word-english" id="flash-word" style="color:var(--secondary)">am</div>
+          <div class="flash-hint">先想过去式，再点击翻转 👇</div>
+        </div>
+        <div class="flash-face flash-back">
+          <div class="word-meta-row">
+            <div class="word-emoji">💡</div>
+            <div class="word-meaning-inline" id="flash-meaning">是</div>
+          </div>
+          <div class="word-english" id="flash-word-back" style="color:var(--secondary);font-size:2rem">was</div>
+          <div class="word-type-badge" id="flash-type-back">原形：am</div>
+        </div>
+      </div>
+    </div>
+    <div class="flash-actions" id="flash-actions" style="display:none">
+      <button class="flash-action-btn btn-know" onclick="flashAnswer(true)">✅ 认识！</button>
+      <button class="flash-action-btn btn-again" onclick="flashAnswer(false)">🔄 再练练</button>
+    </div>
+    <div class="flash-status" id="flash-remain"></div>
+  </div>
+
+  <!-- QUIZ PANEL -->
+  <div class="panel" id="panel-quiz">
+    <div id="quiz-main">
+      <div class="quiz-progress" id="quiz-progress">第 1 / 10 题</div>
+      <div class="quiz-question">
+        <div class="quiz-label">看原形，选出正确的过去式</div>
+        <div class="quiz-word" id="quiz-display"></div>
+      </div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="feedback-box" id="feedback-box"></div>
+      <button class="next-quiz-btn" id="next-quiz-btn" onclick="nextQuestion()">下一题 →</button>
+    </div>
+    <div class="result-screen" id="result-screen">
+      <div class="result-emoji" id="result-emoji">🎉</div>
+      <div class="stars-row" id="stars-row"></div>
+      <div class="result-score" id="result-score">8 / 10</div>
+      <div class="result-msg" id="result-msg">太棒了！</div>
+      <button class="restart-btn" onclick="restartQuiz()">🔄 再来一次</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const LEARN_STORAGE_KEY = 'irregular_past_progress_v1';
+const TRAINING_STORAGE_KEY = 'irregular_past_training_category_v1';
+
+const words = [
+  { word: "were", base: "are", meaning: "是", type: "基础变化组", emoji: "👥" },
+  { word: "was", base: "am", meaning: "是", type: "基础变化组", emoji: "🙋" },
+  { word: "broke", base: "break", meaning: "打破", type: "拼写变化组", emoji: "💥" },
+  { word: "bought", base: "buy", meaning: "买", type: "记忆难点组", emoji: "🛍️" },
+  { word: "caught", base: "catch", meaning: "抓住", type: "记忆难点组", emoji: "🧤" },
+  { word: "did", base: "do", meaning: "做", type: "基础变化组", emoji: "✅" },
+  { word: "drew", base: "draw", meaning: "画", type: "拼写变化组", emoji: "✏️" },
+  { word: "drank", base: "drink", meaning: "喝", type: "元音变化组", emoji: "🥤" },
+  { word: "ate", base: "eat", meaning: "吃", type: "高频动作组", emoji: "🍎" },
+  { word: "fell", base: "fall", meaning: "掉下；落下", type: "高频动作组", emoji: "🍂" },
+  { word: "felt", base: "feel", meaning: "感觉", type: "记忆难点组", emoji: "💗" },
+  { word: "fought", base: "fight", meaning: "打架；战斗", type: "记忆难点组", emoji: "🥊" },
+  { word: "found", base: "find", meaning: "找到", type: "记忆难点组", emoji: "🔎" },
+  { word: "flew", base: "fly", meaning: "飞", type: "拼写变化组", emoji: "🕊️" },
+  { word: "gave", base: "give", meaning: "给", type: "高频动作组", emoji: "🎁" },
+  { word: "went", base: "go", meaning: "去", type: "基础变化组", emoji: "🚶" },
+  { word: "had", base: "have / has", meaning: "有", type: "基础变化组", emoji: "👜" },
+  { word: "was", base: "is", meaning: "是", type: "基础变化组", emoji: "⭐" },
+  { word: "led", base: "lead", meaning: "带领", type: "拼写变化组", emoji: "🚩" },
+  { word: "lost", base: "lose", meaning: "失去；丢失", type: "记忆难点组", emoji: "🫥" },
+  { word: "made", base: "make", meaning: "制作", type: "表达书写组", emoji: "🛠️" },
+  { word: "put", base: "put", meaning: "放；放置", note: "提示：put 的拼写不变。", type: "表达书写组", emoji: "📦" },
+  { word: "read", base: "read", meaning: "读", note: "提示：read 的拼写不变，但读音变化。", type: "表达书写组", emoji: "📘" },
+  { word: "rode", base: "ride", meaning: "骑", type: "拼写变化组", emoji: "🚲" },
+  { word: "ran", base: "run", meaning: "跑", type: "元音变化组", emoji: "🏃" },
+  { word: "said", base: "say", meaning: "说", type: "表达书写组", emoji: "💬" },
+  { word: "saw", base: "see", meaning: "看见", type: "高频动作组", emoji: "👀" },
+  { word: "sat", base: "sit", meaning: "坐", type: "元音变化组", emoji: "🪑" },
+  { word: "slept", base: "sleep", meaning: "睡觉", type: "元音变化组", emoji: "😴" },
+  { word: "sang", base: "sing", meaning: "唱歌", type: "元音变化组", emoji: "🎵" },
+  { word: "stole", base: "steal", meaning: "偷", type: "拼写变化组", emoji: "🕵️" },
+  { word: "swam", base: "swim", meaning: "游泳", type: "元音变化组", emoji: "🏊" },
+  { word: "took", base: "take", meaning: "拿；带走", type: "高频动作组", emoji: "👜" },
+  { word: "told", base: "tell", meaning: "告诉", type: "表达书写组", emoji: "🗣️" },
+  { word: "woke up", base: "wake up", meaning: "醒来", type: "高频动作组", emoji: "⏰" },
+  { word: "wore", base: "wear", meaning: "穿", type: "拼写变化组", emoji: "👕" },
+  { word: "won", base: "win", meaning: "赢", type: "高频动作组", emoji: "🏆" },
+  { word: "wrote", base: "write", meaning: "写", type: "表达书写组", emoji: "✍️" },
+];
+
+function pickWords(baseList) {
+  return baseList.map(base => words.find(item => item.base === base)).filter(Boolean);
+}
+
+const learnGroups = [
+  { name: "第 1 组（10 个）", words: pickWords(["are", "am", "break", "buy", "catch", "do", "draw", "drink", "eat", "fall"]) },
+  { name: "第 2 组（10 个）", words: pickWords(["feel", "fight", "find", "fly", "give", "go", "have / has", "is", "lead", "lose"]) },
+  { name: "第 3 组（9 个）", words: pickWords(["make", "put", "read", "ride", "run", "say", "see", "sit", "sleep"]) },
+  { name: "第 4 组（9 个）", words: pickWords(["sing", "steal", "swim", "take", "tell", "wake up", "wear", "win", "write"]) },
+];
+
+const trainingOptions = [
+  { value: 'auto', label: '自动跟随当前学习进度' },
+  { value: 'all', label: '全部过去式' },
+  ...learnGroups.map((group, index) => ({ value: `group:${index}`, label: group.name })),
+];
+
+function loadLearnProgress() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(LEARN_STORAGE_KEY) || '{}');
+    const nextGroupIndex = Number.isInteger(raw.nextGroupIndex) ? raw.nextGroupIndex : 0;
+    const currentWordIndex = Number.isInteger(raw.currentWordIndex) ? raw.currentWordIndex : 0;
+    return {
+      nextGroupIndex: Math.max(0, nextGroupIndex),
+      currentWordIndex: Math.max(0, currentWordIndex),
+    };
+  } catch (error) {
+    return { nextGroupIndex: 0, currentWordIndex: 0 };
+  }
+}
+
+function saveLearnProgress() {
+  localStorage.setItem(LEARN_STORAGE_KEY, JSON.stringify(learnProgress));
+}
+
+function loadTrainingCategory() {
+  const raw = localStorage.getItem(TRAINING_STORAGE_KEY) || 'auto';
+  const validValues = new Set(trainingOptions.map(option => option.value));
+  return validValues.has(raw) ? raw : 'auto';
+}
+
+function saveTrainingCategory() {
+  localStorage.setItem(TRAINING_STORAGE_KEY, trainingCategory);
+}
+
+function resetLearnProgress() {
+  localStorage.removeItem(LEARN_STORAGE_KEY);
+  learnProgress = { nextGroupIndex: 0, currentWordIndex: 0 };
+  sessionGroupIndex = 0;
+  learnIdx = 0;
+  completedLearnGroup = null;
+  completedLearnGroupIndex = null;
+  switchTab('learn');
+  updateLearn();
+}
+
+function getCurrentLearnGroup() {
+  return learnGroups[learnProgress.nextGroupIndex] || null;
+}
+
+function getCurrentSessionGroup() {
+  return learnGroups[sessionGroupIndex] || null;
+}
+
+function getTrainingSourceGroup() {
+  if (trainingCategory === 'all') {
+    return null;
+  }
+
+  if (trainingCategory.startsWith('group:')) {
+    const groupIndex = Number(trainingCategory.split(':')[1]);
+    return learnGroups[groupIndex] || null;
+  }
+
+  return completedLearnGroup || getCurrentSessionGroup();
+}
+
+function getTrainingSourceWords() {
+  const group = getTrainingSourceGroup();
+  return group ? group.words : words;
+}
+
+function getTrainingSummaryLabel() {
+  if (trainingCategory === 'all') {
+    return '全部过去式';
+  }
+
+  if (trainingCategory.startsWith('group:')) {
+    const group = getTrainingSourceGroup();
+    return group ? group.name : '全部过去式';
+  }
+
+  const autoGroup = completedLearnGroup || getCurrentSessionGroup();
+  return autoGroup ? `自动跟随 · ${autoGroup.name}` : '自动跟随 · 全部过去式';
+}
+
+function getTrainingPreviewWords() {
+  const sourceWords = getTrainingSourceWords();
+  if (trainingCategory === 'all' && sourceWords.length > 14) {
+    return [...sourceWords.slice(0, 14), { word: `...共 ${sourceWords.length} 个过去式` }];
+  }
+  return sourceWords;
+}
+
+function isTrainingMode() {
+  return trainingCategory !== 'auto';
+}
+
+function updateTrainingUI() {
+  const summaryLabel = getTrainingSummaryLabel();
+  document.getElementById('training-current').textContent = summaryLabel;
+  document.getElementById('training-select').value = trainingCategory;
+  document.getElementById('training-preview-label').textContent = `当前词组：${summaryLabel}`;
+
+  const previewWords = getTrainingPreviewWords();
+  const wordList = document.getElementById('training-word-list');
+  wordList.innerHTML = '';
+
+  previewWords.forEach(item => {
+    const chip = document.createElement('span');
+    chip.className = 'training-word-chip';
+    chip.textContent = item.base ? `${item.base} → ${item.word}` : item.word;
+    wordList.appendChild(chip);
+  });
+}
+
+function populateTrainingSelect() {
+  const select = document.getElementById('training-select');
+  select.innerHTML = '';
+  trainingOptions.forEach(option => {
+    const node = document.createElement('option');
+    node.value = option.value;
+    node.textContent = option.label;
+    select.appendChild(node);
+  });
+  updateTrainingUI();
+}
+
+function toggleTrainingPanel() {
+  document.getElementById('training-panel').classList.toggle('show');
+}
+
+function resetFlashSession() {
+  flashShuffled = shuffle([...getTrainingSourceWords()]);
+  flashIdx = 0;
+  flashKnow = 0;
+  flashAgain = 0;
+  document.getElementById('flash-card').style.display = '';
+  updateFlash();
+}
+
+function resetQuizSession() {
+  quizIdx = 0;
+  quizScore = 0;
+  document.getElementById('result-screen').classList.remove('show');
+  document.getElementById('quiz-main').style.display = 'block';
+  buildQuiz();
+  showQuestion();
+}
+
+function applyTrainingCategory(value) {
+  trainingCategory = value;
+  saveTrainingCategory();
+  learnIdx = 0;
+  completedLearnGroup = null;
+  completedLearnGroupIndex = null;
+  updateTrainingUI();
+
+  if (document.getElementById('panel-learn').classList.contains('active')) {
+    updateLearn();
+  }
+  if (document.getElementById('panel-flash').classList.contains('active')) {
+    resetFlashSession();
+  }
+  if (document.getElementById('panel-quiz').classList.contains('active')) {
+    resetQuizSession();
+  }
+}
+
+function getAudioBaseName(word) {
+  return word.toLowerCase().replace(/\s+/g, '-');
+}
+
+function getPreferredAudioFileName(word) {
+  return `${getAudioBaseName(word)}.wav`;
+}
+
+function getFallbackAudioFileName(word) {
+  return `${getAudioBaseName(word)}.mp3`;
+}
+
+let currentAudio = null;
+
+function getAudioCandidates(word) {
+  const embeddedAudioMap = window.EMBEDDED_AUDIO_MAP || null;
+  const embeddedAudio = embeddedAudioMap && embeddedAudioMap[getAudioBaseName(word)];
+  if (embeddedAudio) {
+    return [embeddedAudio];
+  }
+
+  const fileNames = [getPreferredAudioFileName(word), getFallbackAudioFileName(word)];
+  const isLocalFile = window.location.protocol === 'file:';
+  const prefixes = isLocalFile
+    ? [
+        `../音频/`,
+        `./音频/`,
+        `../audio/`,
+        `./audio/`,
+        `file:///Users/mustafa/Desktop/高频词练习项目/音频/`
+      ]
+    : [
+        `./audio/`,
+        `../audio/`,
+        `./音频/`,
+        `../音频/`
+      ];
+
+  const candidates = [];
+  prefixes.forEach(prefix => {
+    fileNames.forEach(fileName => {
+      candidates.push(`${prefix}${fileName}`);
+    });
+  });
+  return candidates;
+}
+
+const audioCache = new Map();
+
+function getCachedAudio(src) {
+  if (!audioCache.has(src)) {
+    const audio = new Audio(src);
+    audio.preload = 'auto';
+    audio.load();
+    audioCache.set(src, audio);
+  }
+  return audioCache.get(src);
+}
+
+function primeAudio(word) {
+  const [primaryCandidate] = getAudioCandidates(word);
+  if (primaryCandidate) {
+    getCachedAudio(primaryCandidate);
+  }
+}
+
+function playAudioFromCandidates(candidates, button, statusNode, word, index = 0) {
+  if (index >= candidates.length) {
+    if (statusNode && !completedLearnGroup) {
+      statusNode.textContent = `提示：${word} 的音频文件暂时没有找到，请检查 ${getPreferredAudioFileName(word)} 或 ${getFallbackAudioFileName(word)}`;
+    }
+    if (button) {
+      button.classList.remove('speaking');
+    }
+    return;
+  }
+
+  const audio = getCachedAudio(candidates[index]);
+  audio.onended = null;
+  audio.onerror = null;
+  audio.currentTime = 0;
+  currentAudio = audio;
+
+  const clearButton = () => {
+    if (button) {
+      button.classList.remove('speaking');
+    }
+  };
+
+  audio.onended = clearButton;
+  audio.onerror = () => {
+    playAudioFromCandidates(candidates, button, statusNode, word, index + 1);
+  };
+
+  audio.play().catch(() => {
+    playAudioFromCandidates(candidates, button, statusNode, word, index + 1);
+  });
+}
+
+function playLocalAudio(word, button = null) {
+  const statusNode = document.getElementById('learn-note');
+
+  if (currentAudio) {
+    currentAudio.onended = null;
+    currentAudio.onerror = null;
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  if (button) {
+    button.classList.add('speaking');
+  }
+  playAudioFromCandidates(getAudioCandidates(word), button, statusNode, word);
+}
+
+function mutateSingleWord(word) {
+  const variants = [];
+  const vowels = 'aeiou';
+
+  for (let i = word.length - 1; i >= 0; i--) {
+    if (vowels.includes(word[i])) {
+      const replacements = ['a', 'e', 'i', 'o', 'u'].filter(letter => letter !== word[i]);
+      variants.push(word.slice(0, i) + replacements[0] + word.slice(i + 1));
+      break;
+    }
+  }
+
+  if (word.length > 3) {
+    variants.push(word.slice(0, -1));
+    variants.push(word.slice(0, -2) + word.slice(-1) + word.slice(-2, -1));
+  }
+  if (!word.endsWith('e')) {
+    variants.push(word + 'e');
+  } else {
+    variants.push(word + word[word.length - 1]);
+  }
+  variants.push(word + word[word.length - 1]);
+
+  return variants.filter(Boolean);
+}
+
+function buildNearSpellingOptions(correctWord) {
+  const parts = correctWord.split(' ');
+  const head = parts[0];
+  const tail = parts.slice(1).join(' ');
+  const distractorSet = new Set();
+
+  mutateSingleWord(head).forEach(variant => {
+    const candidate = tail ? `${variant} ${tail}` : variant;
+    if (candidate !== correctWord) {
+      distractorSet.add(candidate);
+    }
+  });
+
+  if (distractorSet.size < 2) {
+    distractorSet.add(tail ? `${head}ed ${tail}` : `${head}ed`);
+  }
+  if (distractorSet.size < 2) {
+    distractorSet.add(tail ? `${head}d ${tail}` : `${head}d`);
+  }
+
+  const distractors = [...distractorSet].slice(0, 2);
+  return shuffle([correctWord, ...distractors]);
+}
+
+// ========== LEARN ==========
+let learnProgress = loadLearnProgress();
+let sessionGroupIndex = learnProgress.nextGroupIndex;
+let learnIdx = learnProgress.currentWordIndex;
+let completedLearnGroup = null;
+let completedLearnGroupIndex = null;
+let learnAnswered = false;
+
+function setLearnNextButtonState(nextBtn, canProceed, isLast, trainingMode) {
+  if (!canProceed) {
+    nextBtn.disabled = true;
+    nextBtn.textContent = trainingMode ? '选完再继续 →' : (isLast ? '选完后完成本组 →' : '选完再继续 →');
+    return;
+  }
+
+  if (trainingMode) {
+    nextBtn.disabled = isLast;
+    nextBtn.textContent = isLast ? '已到最后一个' : '下一个 →';
+    return;
+  }
+
+  nextBtn.disabled = false;
+  nextBtn.textContent = isLast ? '完成这一组 →' : '下一个 →';
+}
+
+function renderLearnOptions(wordItem, nextBtn, trainingMode, isLast) {
+  const optionBox = document.getElementById('learn-options');
+  const feedbackBox = document.getElementById('learn-feedback');
+  const options = buildNearSpellingOptions(wordItem.word);
+
+  learnAnswered = false;
+  optionBox.innerHTML = '';
+  feedbackBox.className = 'learn-feedback';
+  feedbackBox.textContent = '';
+
+  options.forEach(optionText => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = optionText;
+    btn.onclick = () => {
+      if (learnAnswered) return;
+      learnAnswered = true;
+
+      optionBox.querySelectorAll('.option-btn').forEach(node => {
+        node.disabled = true;
+        if (node.textContent === wordItem.word) {
+          node.classList.add('correct');
+        }
+      });
+
+      if (optionText === wordItem.word) {
+        btn.classList.add('correct');
+        feedbackBox.className = 'learn-feedback correct-fb show';
+        feedbackBox.textContent = `答对了！${wordItem.base} → ${wordItem.word}`;
+      } else {
+        btn.classList.add('wrong');
+        feedbackBox.className = 'learn-feedback wrong-fb show';
+        feedbackBox.textContent = `正确答案：${wordItem.base} → ${wordItem.word}`;
+      }
+
+      setLearnNextButtonState(nextBtn, true, isLast, trainingMode);
+    };
+    optionBox.appendChild(btn);
+  });
+
+  setLearnNextButtonState(nextBtn, false, isLast, trainingMode);
+}
+
+function updateLearn() {
+  const group = getCurrentSessionGroup();
+  const navRow = document.getElementById('learn-nav-row');
+  const completeActions = document.getElementById('learn-complete-actions');
+  const speakBtn = document.getElementById('speak-btn');
+  const note = document.getElementById('learn-note');
+  const nextBtn = document.getElementById('btn-next');
+  const completeNextBtn = document.getElementById('btn-complete-next');
+  const completeQuizBtn = document.getElementById('btn-complete-quiz');
+  const resetBtn = document.getElementById('btn-reset-progress');
+  const metaRow = document.getElementById('learn-meta-row');
+  const meaningNode = document.getElementById('learn-meaning');
+  const optionBox = document.getElementById('learn-options');
+  const feedbackBox = document.getElementById('learn-feedback');
+  const trainingMode = isTrainingMode();
+
+  if (trainingMode) {
+    const trainingWords = getTrainingSourceWords();
+    if (!trainingWords.length) {
+      return;
+    }
+
+    const trainingLabel = getTrainingSummaryLabel();
+    const totalWords = trainingWords.length;
+    learnIdx = Math.max(0, Math.min(totalWords - 1, learnIdx));
+    const w = trainingWords[learnIdx];
+
+    document.getElementById('learn-word').textContent = w.base;
+    document.getElementById('learn-emoji').textContent = w.emoji;
+    meaningNode.textContent = w.meaning;
+    document.getElementById('learn-type').textContent = '请选择正确的过去式';
+    document.getElementById('learn-chinese').textContent = '';
+    document.getElementById('learn-label').textContent = `${trainingLabel} · 第 ${learnIdx + 1} / ${totalWords} 个`;
+    document.getElementById('learn-counter').textContent = `${learnIdx + 1} / ${totalWords}`;
+    document.getElementById('learn-bar').style.width = `${((learnIdx + 1) / totalWords) * 100}%`;
+    document.getElementById('btn-prev').disabled = learnIdx === 0;
+    navRow.style.display = 'flex';
+    completeActions.style.display = 'none';
+    completeNextBtn.style.display = 'inline-flex';
+    completeQuizBtn.style.display = 'inline-flex';
+    resetBtn.style.display = 'none';
+    speakBtn.style.display = 'none';
+    note.textContent = w.note || '';
+    metaRow.style.display = 'flex';
+    optionBox.style.display = 'grid';
+    renderLearnOptions(w, nextBtn, true, learnIdx === totalWords - 1);
+    updateTrainingUI();
+    return;
+  }
+
+  if (completedLearnGroup) {
+    document.getElementById('learn-emoji').textContent = '🎉';
+    document.getElementById('learn-word').textContent = '完成啦';
+    meaningNode.textContent = '';
+    document.getElementById('learn-type').textContent = completedLearnGroup.name;
+    document.getElementById('learn-chinese').textContent = `今天已经学完这组 ${completedLearnGroup.words.length} 个过去式了`;
+    document.getElementById('learn-label').textContent = `${completedLearnGroup.name} · 本组完成`;
+    document.getElementById('learn-counter').textContent = '已完成';
+    document.getElementById('learn-bar').style.width = '100%';
+    navRow.style.display = 'none';
+    completeActions.style.display = 'flex';
+    completeNextBtn.style.display = 'inline-flex';
+    completeQuizBtn.style.display = 'inline-flex';
+    resetBtn.style.display = 'none';
+    speakBtn.style.display = 'none';
+    note.textContent = '你可以现在开始下一组，也可以先做这一组的小检测。';
+    metaRow.style.display = 'none';
+    optionBox.style.display = 'none';
+    feedbackBox.className = 'learn-feedback';
+    feedbackBox.textContent = '';
+    updateTrainingUI();
+    return;
+  }
+
+  if (!group) {
+    document.getElementById('learn-emoji').textContent = '🏆';
+    document.getElementById('learn-word').textContent = '全部学完';
+    meaningNode.textContent = '';
+    document.getElementById('learn-type').textContent = '学习完成';
+    document.getElementById('learn-chinese').textContent = `${words.length} 个过去式已经全部学完了，可以去闪卡和小测验继续复习`;
+    document.getElementById('learn-label').textContent = '全部词组已完成';
+    document.getElementById('learn-counter').textContent = '完成';
+    document.getElementById('learn-bar').style.width = '100%';
+    navRow.style.display = 'none';
+    completeActions.style.display = 'flex';
+    completeNextBtn.style.display = 'none';
+    completeQuizBtn.style.display = 'none';
+    resetBtn.style.display = 'inline-flex';
+    speakBtn.style.display = 'none';
+    note.textContent = '如果想从头再学一遍，点击下面的“再来一遍”。';
+    metaRow.style.display = 'none';
+    optionBox.style.display = 'none';
+    feedbackBox.className = 'learn-feedback';
+    feedbackBox.textContent = '';
+    updateTrainingUI();
+    return;
+  }
+
+  const groupSize = group.words.length;
+  learnIdx = Math.max(0, Math.min(groupSize - 1, learnIdx));
+  if (sessionGroupIndex === learnProgress.nextGroupIndex) {
+    learnProgress.currentWordIndex = learnIdx;
+  }
+  saveLearnProgress();
+
+  const w = group.words[learnIdx];
+  document.getElementById('learn-word').textContent = w.base;
+  document.getElementById('learn-emoji').textContent = w.emoji;
+  meaningNode.textContent = w.meaning;
+  document.getElementById('learn-type').textContent = '请选择正确的过去式';
+  document.getElementById('learn-chinese').textContent = '';
+  document.getElementById('learn-label').textContent = `${group.name} · 第 ${learnIdx + 1} / ${groupSize} 个`;
+  document.getElementById('learn-counter').textContent = `${learnIdx + 1} / ${groupSize}`;
+  document.getElementById('learn-bar').style.width = `${((learnIdx + 1) / groupSize) * 100}%`;
+  document.getElementById('btn-prev').disabled = learnIdx === 0;
+  navRow.style.display = 'flex';
+  completeActions.style.display = 'none';
+  completeNextBtn.style.display = 'inline-flex';
+  completeQuizBtn.style.display = 'inline-flex';
+  resetBtn.style.display = 'none';
+  speakBtn.style.display = 'none';
+  note.textContent = w.note || '';
+  metaRow.style.display = 'flex';
+  optionBox.style.display = 'grid';
+  renderLearnOptions(w, nextBtn, false, learnIdx === groupSize - 1);
+  updateTrainingUI();
+}
+
+function learnNav(dir) {
+  if (isTrainingMode()) {
+    const trainingWords = getTrainingSourceWords();
+    if (!trainingWords.length) return;
+    learnIdx = Math.max(0, Math.min(trainingWords.length - 1, learnIdx + dir));
+    updateLearn();
+    return;
+  }
+
+  const group = getCurrentSessionGroup();
+  if (!group || completedLearnGroup) return;
+
+  if (dir > 0 && learnIdx === group.words.length - 1) {
+    completedLearnGroup = group;
+    completedLearnGroupIndex = sessionGroupIndex;
+    learnProgress.nextGroupIndex = Math.min(learnGroups.length, sessionGroupIndex + 1);
+    learnProgress.currentWordIndex = 0;
+    saveLearnProgress();
+    updateLearn();
+    return;
+  }
+
+  learnIdx = Math.max(0, Math.min(group.words.length - 1, learnIdx + dir));
+  if (sessionGroupIndex === learnProgress.nextGroupIndex) {
+    learnProgress.currentWordIndex = learnIdx;
+  }
+  saveLearnProgress();
+  updateLearn();
+}
+
+function speakWord() {
+  const currentGroup = getCurrentSessionGroup();
+  const sourceWords = isTrainingMode() ? getTrainingSourceWords() : ((currentGroup && currentGroup.words) || []);
+  if (!sourceWords.length || (!isTrainingMode() && completedLearnGroup)) return;
+  const w = sourceWords[learnIdx].word;
+  const btn = document.getElementById('speak-btn');
+  playLocalAudio(w, btn);
+}
+
+function startNextGroup() {
+  if (learnProgress.nextGroupIndex >= learnGroups.length) {
+    completedLearnGroup = null;
+    completedLearnGroupIndex = null;
+    sessionGroupIndex = learnGroups.length;
+    updateLearn();
+    return;
+  }
+
+  completedLearnGroup = null;
+  completedLearnGroupIndex = null;
+  sessionGroupIndex = learnProgress.nextGroupIndex;
+  learnIdx = 0;
+  learnProgress.currentWordIndex = 0;
+  saveLearnProgress();
+  switchTab('learn');
+  updateLearn();
+}
+
+function startGroupQuiz() {
+  switchTab('quiz');
+}
+
+let trainingCategory = loadTrainingCategory();
+populateTrainingSelect();
+updateLearn();
+
+// ========== FLASH ==========
+let flashShuffled = shuffle([...getTrainingSourceWords()]);
+let flashIdx = 0;
+let flashKnow = 0, flashAgain = 0;
+let isFlipped = false;
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function updateFlash() {
+  if (flashIdx >= flashShuffled.length) {
+    document.getElementById('flash-status').textContent = `🎉 全部完成！认识 ${flashKnow} 个，还需再练 ${flashAgain} 个`;
+    document.getElementById('flash-card').style.display = 'none';
+    document.getElementById('flash-actions').style.display = 'none';
+    return;
+  }
+  const w = flashShuffled[flashIdx];
+  document.getElementById('flash-emoji').textContent = w.emoji;
+  document.getElementById('flash-word').textContent = w.base;
+  document.getElementById('flash-word-back').textContent = w.word;
+  document.getElementById('flash-type-back').textContent = `原形：${w.base}`;
+  document.getElementById('flash-meaning').textContent = w.meaning;
+  document.getElementById('flash-remain').textContent = `剩余 ${flashShuffled.length - flashIdx} 张`;
+  document.getElementById('flash-status').textContent = '先想一想过去式，再点击翻转 ✨';
+  isFlipped = false;
+  document.getElementById('flash-card').classList.remove('flipped');
+  document.getElementById('flash-actions').style.display = 'none';
+}
+function flipCard() {
+  if (flashIdx >= flashShuffled.length) return;
+  isFlipped = !isFlipped;
+  document.getElementById('flash-card').classList.toggle('flipped', isFlipped);
+  if (isFlipped) {
+    document.getElementById('flash-actions').style.display = 'flex';
+    document.getElementById('flash-status').textContent = '这个过去式你记住了吗？';
+  }
+}
+function flashAnswer(know) {
+  if (know) { flashKnow++; }
+  else { flashAgain++; flashShuffled.push(flashShuffled[flashIdx]); }
+  flashIdx++;
+  updateFlash();
+}
+updateFlash();
+
+// ========== QUIZ ==========
+let quizQuestions = [];
+let quizIdx = 0;
+let quizScore = 0;
+let answered = false;
+
+function buildQuiz() {
+  const sourceGroup = getTrainingSourceGroup();
+  const sourceWords = sourceGroup ? sourceGroup.words : words;
+  const shuffled = shuffle([...sourceWords]);
+  quizQuestions = shuffled.map(w => {
+    return { word: w, options: buildNearSpellingOptions(w.word) };
+  });
+}
+function showQuestion() {
+  const totalQuestions = quizQuestions.length;
+  if (quizIdx >= totalQuestions) { showResult(); return; }
+  answered = false;
+  const q = quizQuestions[quizIdx];
+  const sourceGroup = getTrainingSourceGroup();
+  const groupLabel = sourceGroup ? `${sourceGroup.name} · ` : '';
+  document.getElementById('quiz-progress').textContent = `${groupLabel}第 ${quizIdx+1} / ${totalQuestions} 题`;
+  document.getElementById('quiz-display').textContent = q.word.base;
+
+  const optDiv = document.getElementById('quiz-options');
+  optDiv.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(btn, opt, q.word);
+    optDiv.appendChild(btn);
+  });
+
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('feedback-box').textContent = '';
+  document.getElementById('next-quiz-btn').className = 'next-quiz-btn';
+}
+function checkAnswer(btn, chosen, correct) {
+  if (answered) return;
+  answered = true;
+  const allBtns = document.querySelectorAll('.option-btn');
+  allBtns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('feedback-box');
+  if (chosen === correct.word) {
+    btn.classList.add('correct');
+    fb.className = 'feedback-box correct-fb show';
+    fb.textContent = `🎉 太棒了！${correct.base} → ${correct.word}`;
+    quizScore++;
+  } else {
+    btn.classList.add('wrong');
+    allBtns.forEach(b => { if (b.textContent === correct.word) b.classList.add('correct'); });
+    fb.className = 'feedback-box wrong-fb show';
+    fb.textContent = `😊 再想想！正确答案是 ${correct.base} → ${correct.word}`;
+  }
+  document.getElementById('next-quiz-btn').className = 'next-quiz-btn show';
+}
+function nextQuestion() {
+  quizIdx++;
+  showQuestion();
+}
+function showResult() {
+  document.getElementById('quiz-main').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.classList.add('show');
+  const totalQuestions = quizQuestions.length || 1;
+  const pct = quizScore / totalQuestions;
+  let emoji, msg, stars;
+  if (pct === 1) { emoji='🏆'; msg='满分！你真是太厉害了！'; stars=5; }
+  else if (pct >= 0.8) { emoji='🎉'; msg='非常棒！继续加油！'; stars=4; }
+  else if (pct >= 0.6) { emoji='😊'; msg='不错哦！再练练会更好！'; stars=3; }
+  else { emoji='💪'; msg='加油！多练几次就会了！'; stars=2; }
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-score').textContent = `${quizScore} / ${totalQuestions}`;
+  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('stars-row').textContent = '⭐'.repeat(stars) + '☆'.repeat(5-stars);
+}
+function restartQuiz() {
+  resetQuizSession();
+}
+
+// ========== TABS ==========
+function switchTab(tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  const idx = ['learn','flash','quiz'].indexOf(tab);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  if (tab === 'quiz') {
+    resetQuizSession();
+  }
+  if (tab === 'flash') {
+    resetFlashSession();
+  }
+}
+
+buildQuiz();
+showQuestion();
+</script>
+</body>
+</html>
